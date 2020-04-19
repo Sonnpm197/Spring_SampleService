@@ -1,0 +1,31 @@
+#  The bootstrap.yml file reads the application properties
+#  before any other configuration information used
+#  Usually, the information you store in the application.yml file is
+#  configuration data that you might want to have available to a
+#  service even if the Spring Cloud Config service is unavailable
+spring:
+  application:
+    name: learningenglish
+  profiles:
+    active:
+      dev
+  cloud:
+    config:
+      uri: http://localhost:8888
+eureka:
+  instance:
+#    In a container-based deployment (for example, Docker), containers will be
+#    started with randomly generated hostnames and no DNS entries for
+#    the containers =>> your client applications won’t properly resolve the
+#    location of the hostnames because there will
+#    be no DNS entry for that container
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+#    tell the Spring Eureka Client to fetch a local copy of the registry.
+#    Setting this attribute to true will cache the registry locally instead of calling the Eureka
+#    service with every lookup. Every 30 seconds, the client software will re-contact the
+#    Eureka service for any changes to the registry
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <appender name="SYSLOG" class="ch.qos.logback.classic.net.SyslogAppender">
+        <syslogHost>logs4.papertrailapp.com</syslogHost>
+        <port>54880</port>
+        <facility>USER</facility>
+        <suffixPattern>[%d{yyyy-MM-dd HH:mm:ss}] [%thread] %-5level %logger{36}.%M - %X{mdcData} [%X{X-B3-TraceId:-} %X{X-B3-SpanId:-} %X{X-Span-Export:-}] %msg%n</suffixPattern>
+        <throwableExcluded>true</throwableExcluded>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="SYSLOG" />
+    </root>
+
+</configuration>

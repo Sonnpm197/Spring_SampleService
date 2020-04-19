@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../LEW_ConfigServer/pom.xml" />
+        <option value="$PROJECT_DIR$/../LE_ConfigServer/pom.xml" />
+        <option value="$PROJECT_DIR$/../LE_Eureka/pom.xml" />
+        <option value="$PROJECT_DIR$/../LE_Quizlet/pom.xml" />
+        <option value="$PROJECT_DIR$/../LE_EurekaServer/pom.xml" />
+        <option value="$PROJECT_DIR$/../LE_Sleuth/pom.xml" />
+        <option value="$PROJECT_DIR$/../LE_ZipkinServer/pom.xml" />
+        <option value="$PROJECT_DIR$/../LE_Zuul/pom.xml" />
+        <option value="$PROJECT_DIR$/../../InActionSourceCode/spring-micro-services-in-action/spmia-chapter6/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/../../InActionSourceCode/spring-micro-services-in-action/spmia-chapter6/confsvr/pom.xml" />
+        <option value="$PROJECT_DIR$/../../InActionSourceCode/spring-micro-services-in-action/spmia-chapter6/eurekasvr/pom.xml" />
+        <option value="$PROJECT_DIR$/../../InActionSourceCode/spring-micro-services-in-action/spmia-chapter6/licensing-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../../InActionSourceCode/spring-micro-services-in-action/spmia-chapter6/organization-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../../InActionSourceCode/spring-micro-services-in-action/spmia-chapter6/orgservice-new/pom.xml" />
+        <option value="$PROJECT_DIR$/../../InActionSourceCode/spring-micro-services-in-action/spmia-chapter6/pom.xml" />
+        <option value="$PROJECT_DIR$/../../InActionSourceCode/spring-micro-services-in-action/spmia-chapter6/specialroutes-service/pom.xml" />
+        <option value="$PROJECT_DIR$/../../InActionSourceCode/spring-micro-services-in-action/spmia-chapter6/zuulsvr/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

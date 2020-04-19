@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="LE_ConfigServer" />
+        <module name="Spring_SampleService" />
+        <module name="LE_EurekaServer" />
+        <module name="LEWConfigServer" />
+        <module name="LE_Quizlet" />
+        <module name="LE_Zuul" />
+        <module name="service-registration-and-discovery-service" />
+        <module name="LE_ZipkinServer" />
+        <module name="LE_Sleuth" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="configurationserver" target="1.8" />
+      <module name="eurekasvr" target="1.8" />
+      <module name="licensing-service" target="1.8" />
+      <module name="organization-service" target="1.8" />
+      <module name="orgservice-new" target="1.8" />
+      <module name="service-registration-and-discovery-client" target="1.8" />
+      <module name="specialroutesservice" target="1.8" />
+      <module name="tmx-parent-pom" target="1.6" />
+      <module name="zuulsvr" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="LE_ConfigServer" options="" />
+      <module name="LE_EurekaServer" options="-parameters" />
+      <module name="LE_Quizlet" options="-parameters" />
+      <module name="LE_Sleuth" options="-parameters" />
+      <module name="LE_Zuul" options="-parameters" />
+      <module name="Spring_SampleService" options="-parameters" />
+      <module name="service-registration-and-discovery-client" options="-parameters" />
+      <module name="service-registration-and-discovery-service" options="-parameters" />
+    </option>
+  </component>
+</project>
