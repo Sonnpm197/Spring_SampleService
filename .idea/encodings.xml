@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/../../Parkway/parkway-gateway/parkway-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../../Parkway/parkway-gateway/parkway-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Spring_EurekaServer/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Spring_EurekaServer/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Spring_GatewayNgInX/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Spring_GatewayNgInX/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Spring_JwtSwaggerAuditing/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Spring_JwtSwaggerAuditing/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Spring_QuizletService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Spring_QuizletService/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Spring_Sleuth/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Spring_Sleuth/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Spring_Zuul/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/../Spring_Zuul/src/main/resources" charset="UTF-8" />
   </component>
 </project>

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../LE_Configuration/LE_Configuration.iml" filepath="$PROJECT_DIR$/../LE_Configuration/LE_Configuration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Spring_Configuration/Spring_Configuration.iml" filepath="$PROJECT_DIR$/../Spring_Configuration/Spring_Configuration.iml" />
     </modules>
   </component>
 </project>

@@ -14,6 +14,15 @@
         <option value="$PROJECT_DIR$/../LE_ZipkinServer/pom.xml" />
         <option value="$PROJECT_DIR$/../LE_Zuul/pom.xml" />
         <option value="$PROJECT_DIR$/../../InActionSourceCode/spring-micro-services-in-action/spmia-chapter6/pom.xml" />
+        <option value="$PROJECT_DIR$/../Spring_Sleuth/pom.xml" />
+        <option value="$PROJECT_DIR$/../Spring_ZipkinServer/pom.xml" />
+        <option value="$PROJECT_DIR$/../Spring_Zuul/pom.xml" />
+        <option value="$PROJECT_DIR$/../Spring_QuizletService/pom.xml" />
+        <option value="$PROJECT_DIR$/../Spring_JwtSwaggerAuditing/pom.xml" />
+        <option value="$PROJECT_DIR$/../Spring_GatewayNgInX/pom.xml" />
+        <option value="$PROJECT_DIR$/../Spring_EurekaServer/pom.xml" />
+        <option value="$PROJECT_DIR$/../Spring_ConfigServer/pom.xml" />
+        <option value="$PROJECT_DIR$/../../Parkway/parkway-gateway/parkway-gateway/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

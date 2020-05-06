@@ -8,6 +8,7 @@ import com.son.learningenglish.utils.UserContextHolder;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -43,6 +44,7 @@ public class SampleService {
     private DiscoveryClient discoveryClient;
 
     @Autowired
+    @Qualifier("getRestTemplate") // get bean by name
     private RestTemplate restTemplate; // Using Ribbon-backed restTemplate
 
     @Autowired

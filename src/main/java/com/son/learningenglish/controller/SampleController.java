@@ -1,12 +1,17 @@
 package com.son.learningenglish.controller;
 
+import com.son.learningenglish.model.Quizlet;
 import com.son.learningenglish.service.SampleService;
 import com.son.learningenglish.utils.UserContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.oauth2.client.OAuth2RestTemplate;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +27,7 @@ public class SampleController {
         return userName;
     }
 
-    @Value("${mySecretWeapon}")
+    @Value("${mySecretWeapon:sword}") // set default to sword
     private String mySecretWeapon;
 
     // Test decrypt by app (not auto decrypt by server)
@@ -53,5 +58,21 @@ public class SampleController {
     @GetMapping("quizlet-feign")
     public String callQuizletFeign() {
         return sampleService.callQuizletFeign();
+    }
+
+    // Test OAuth2 + return access_denied if ROLE_USER
+    @DeleteMapping("sampleDelete")
+    public String sampleDelete() {
+        return "OK";
+    }
+
+    @Autowired
+    @Qualifier("oauth2RestTemplate") // get bean by name
+    OAuth2RestTemplate oAuth2RestTemplate;
+
+    @GetMapping("quizlet-oauth2-sample")
+    public String callQuizletOAuth2() {
+        return oAuth2RestTemplate.exchange("http://localhost:9999/api/quiz/sampleQuizletOAuth2",
+                HttpMethod.GET, null, String.class).getBody();
     }
 }
