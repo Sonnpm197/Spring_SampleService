@@ -11,6 +11,7 @@ import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Primary;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
@@ -52,6 +53,9 @@ public class LE_Main {
     // @EnableDiscoveryClient + @EnableFeignClients
     // are not needed when using the Ribbon backed RestTemplate and can be removed
     @LoadBalanced // @LoadBalanced tells Spring Cloud to create a Ribbon backed RestTemplate
+
+    // OAuth2RestTemplate class doesn’t propagate JWT-based tokens
+    // UserContextInterceptor will auto inject Authorization header
     @Bean
     public RestTemplate getRestTemplate() {
         RestTemplate template = new RestTemplate();
