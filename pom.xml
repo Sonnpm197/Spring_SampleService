@@ -13,9 +13,17 @@
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
+<!--        Release Train  |  Boot Version-->
+<!--        Hoxton         |  2.2.x-->
+<!--        Greenwich      |  2.1.x-->
+<!--        Finchley       |  2.0.x-->
+<!--        Edgware        |  1.5.x-->
+<!--        Dalston        |  1.5.x-->
         <java.version>1.8</java.version>
-<!--        Using FeignClient-->
-        <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+        <!--        Using Finchley.RELEASE for FeignClient-->
+<!--                <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>-->
+        <spring-cloud.version>Hoxton.SR3</spring-cloud.version>
+<!--        <spring-cloud.version>Greenwich.SR3</spring-cloud.version>-->
     </properties>
 
     <dependencies>
@@ -24,20 +32,20 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-<!--        Using config server-->
+        <!--        Using config server-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
 
-<!--        Allow Client-Side decrypt-->
+        <!--        Allow Client-Side decrypt-->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-rsa</artifactId>
             <version>1.0.9.RELEASE</version>
         </dependency>
 
-<!--        Integrate with OAuth2-->
+        <!--        Integrate with OAuth2-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-security</artifactId>
@@ -49,6 +57,7 @@
             <version>2.2.2.RELEASE</version>
         </dependency>
 
+<!--        Verify token in userInfoUri: http://localhost:8901/user-->
         <dependency>
             <groupId>org.springframework.security.oauth.boot</groupId>
             <artifactId>spring-security-oauth2-autoconfigure</artifactId>
@@ -67,13 +76,13 @@
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 
-<!--        Using feign to make request-->
+        <!--        Using feign to make request-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
-<!--        Using hystrix to handle error-->
+        <!--        Using hystrix to handle error-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
@@ -88,6 +97,40 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+        </dependency>
+
+        <!--        Adding spring cloud stream + Kafka-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-stream</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-stream-kafka</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+            <version>2.3.8.RELEASE</version>
+        </dependency>
+
+        <!--        Using Redis to cache data from quizlet service-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.lettuce</groupId>
+                    <artifactId>lettuce-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
         </dependency>
 
         <dependency>

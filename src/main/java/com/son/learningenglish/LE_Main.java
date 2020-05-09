@@ -1,23 +1,34 @@
 package com.son.learningenglish;
 
+import com.son.learningenglish.stream.QuizletChangeModel;
 import com.son.learningenglish.utils.UserContextInterceptor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
+import org.springframework.security.oauth2.client.token.AccessTokenRequest;
+import org.springframework.security.oauth2.client.token.DefaultAccessTokenRequest;
 import org.springframework.security.oauth2.client.token.grant.client.ClientCredentialsResourceDetails;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.RestTemplate;
@@ -48,6 +59,16 @@ import java.util.List;
 // Once it knows the token is valid, the @EnableResourceServer annotation
 // also applies any access control rules over who and what can access a service
 @EnableResourceServer
+
+// tells the service to the use the channels defined in the Sink
+// interface to listen for incoming messages (default is input channel)
+// If you want to use your custom channel, comment this and move to
+// CustomQuizletChangeHandler
+
+// enable this line to use with "input" channel
+// Also enable QuizletChangeListener
+//@EnableBinding(Sink.class)
+@Slf4j
 public class LE_Main {
 
     // @EnableDiscoveryClient + @EnableFeignClients
@@ -69,22 +90,21 @@ public class LE_Main {
         return template;
     }
 
+    // Set up redis db connection
     @Bean
-    public OAuth2ProtectedResourceDetails defaultOAuth2ProtectedResourceDetails() {
-        return new ClientCredentialsResourceDetails();
+    public JedisConnectionFactory jedisConnectionFactory() {
+        JedisConnectionFactory jedisConFactory = new JedisConnectionFactory();
+        jedisConFactory.setHostName("localhost");
+        jedisConFactory.setPort(6379);
+        return jedisConFactory;
     }
 
+    // Carry out action against redis server
     @Bean
-    public OAuth2ClientContext defaultOauth2ClientContext() {
-        return new DefaultOAuth2ClientContext();
-    }
-
-    // Authorization HTTP header is injected into the application call out to other services
-    @Bean
-    public OAuth2RestTemplate oauth2RestTemplate(
-            @Qualifier("defaultOauth2ClientContext") OAuth2ClientContext oauth2ClientContext,
-            @Qualifier("defaultOAuth2ProtectedResourceDetails") OAuth2ProtectedResourceDetails details) {
-        return new OAuth2RestTemplate(details, oauth2ClientContext);
+    public RedisTemplate<String, Object> redisTemplate() {
+        RedisTemplate<String, Object> template = new RedisTemplate<>();
+        template.setConnectionFactory(jedisConnectionFactory());
+        return template;
     }
 
     public static void main(String[] arguments) {

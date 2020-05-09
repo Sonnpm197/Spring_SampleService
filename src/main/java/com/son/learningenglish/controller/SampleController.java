@@ -1,6 +1,7 @@
 package com.son.learningenglish.controller;
 
 import com.son.learningenglish.model.Quizlet;
+import com.son.learningenglish.redis.QuizletRestTemplateClient;
 import com.son.learningenglish.service.SampleService;
 import com.son.learningenglish.utils.UserContextHolder;
 import lombok.extern.slf4j.Slf4j;
@@ -66,13 +67,12 @@ public class SampleController {
         return "OK";
     }
 
+    // Calling to test redis caching
     @Autowired
-    @Qualifier("oauth2RestTemplate") // get bean by name
-    OAuth2RestTemplate oAuth2RestTemplate;
+    QuizletRestTemplateClient quizletRestTemplateClient;
 
-    @GetMapping("quizlet-oauth2-sample")
-    public String callQuizletOAuth2() {
-        return oAuth2RestTemplate.exchange("http://localhost:9999/api/quiz/sampleQuizletOAuth2",
-                HttpMethod.GET, null, String.class).getBody();
+    @GetMapping("quizlet-redis-sample")
+    public Quizlet callQuizletAndCacheToRedis() {
+        return quizletRestTemplateClient.getQuizlet("1234");
     }
 }

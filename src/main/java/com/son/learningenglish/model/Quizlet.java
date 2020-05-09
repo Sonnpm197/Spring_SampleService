@@ -12,5 +12,6 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Quizlet implements Serializable {
+    private String id;
     private String quizletName;
 }

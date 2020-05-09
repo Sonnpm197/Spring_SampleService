@@ -1,9 +1,13 @@
+server:
+  port: 8082
 #  The bootstrap.yml file reads the application properties
 #  before any other configuration information used
 #  Usually, the information you store in the application.yml file is
 #  configuration data that you might want to have available to a
 #  service even if the Spring Cloud Config service is unavailable
 spring:
+  zipkin:
+    enabled: false
   application:
     name: learningenglish
   profiles:
@@ -12,17 +16,39 @@ spring:
   cloud:
     config:
       uri: http://localhost:8888
+    stream:
+      bindings:
+#        -------------Use default channel here---------
+#        -------Remember to enable @EnableBinding(Sink.class) in main class
+#        -------and QuizletChangeListener
 
-#  once you set up the service as a protected resource,
-#  every time a call is made to the service, the caller has to include the Authentication
-#  HTTP header containing an OAuth2 access token to the service. Your protected
-#  resource then has to call back to the OAuth2 service to see if the token is valid
-security:
-  oauth2:
-    resource:
-      userInfoUri: http://localhost:8901/user
+#        input: # maps to the Sink.INPUT channel defined in the code
+#          destination: quizletChangeQueue # map this queue to quizlet service
+#          content-type: application/json
+#          # As long as all the service instances have the same group name,
+#          # Spring Cloud Stream and the underlying message broker will
+#          # guarantee that only one copy of the message will be
+#          # consumed by a service instance belonging to that group
+#          group: sampleServiceGroup
+
+#        -----------Using custom channel here------------------
+        customQuizletChannel:
+          destination: quizletChangeQueue
+          content-type: application/json
+          group: sampleServiceGroup2
+        kafka:
+          binder:
+            zkNodes: localhost
+            brokers: localhost
 
 eureka:
+  instance:
+    #    In a container-based deployment (for example, Docker), containers will be
+    #    started with randomly generated hostnames and no DNS entries for
+    #    the containers =>> your client applications won’t properly resolve the
+    #    location of the hostnames because there will
+    #    be no DNS entry for that container
+    prefer-ip-address: true
   client:
     register-with-eureka: true
     #    tell the Spring Eureka Client to fetch a local copy of the registry.
@@ -32,11 +58,15 @@ eureka:
     fetch-registry: true
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
-  instance:
-#    In a container-based deployment (for example, Docker), containers will be
-#    started with randomly generated hostnames and no DNS entries for
-#    the containers =>> your client applications won’t properly resolve the
-#    location of the hostnames because there will
-#    be no DNS entry for that container
-    prefer-ip-address: true
 
+#  once you set up the service as a protected resource,
+#  every time a call is made to the service, the caller has to include the Authentication
+#  HTTP header containing an OAuth2 access token to the service. Your protected
+#  resource then has to call back to the OAuth2 service to see if the token is valid
+
+security:
+  oauth2:
+    client:
+      access-token-uri: http://localhost:8901/oauth/token
+    resource:
+      userInfoUri: http://localhost:8901/user
